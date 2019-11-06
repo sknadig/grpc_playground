@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package array;
+
+
+message ArrayRequest {
+    int64 client_id = 1;
+    repeated int32 data = 3 [packed=true];
+}
+
+message ArrayResponse {
+    int64 server_id = 1;
+    repeated int32 data = 3 [packed=true];
+}
+
+service ArrayDemo {
+ 
+    rpc ArrayMethod (ArrayRequest) returns (ArrayResponse);
+
+    rpc BidirectionalArrayMethod (stream ArrayRequest) returns (stream ArrayResponse);
+}
+
